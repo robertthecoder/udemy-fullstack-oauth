@@ -33,12 +33,18 @@ passport.use(
       //   console.log(profile);
       //   console.log(refreshToken);
 
-      // new user
-      new User({ googleId: profile.id }).save(function(err, doc) {
-        if (err) return console.error(err);
-        console.log("Document inserted succussfully!");
+      User.findOne({ googleId: profile.id }).then(existingUser => {
+        if (!existingUser) {
+          // new user
+          new User({ googleId: profile.id }).save(function(err, doc) {
+            if (err) return console.error(err);
+            console.log("Document inserted succussfully!");
+          });
+          console.log("New User has been added to db");
+        } else {
+          console.log("Did not add to db, as user already exists!");
+        }
       });
-      console.log("User has been added to db");
     }
   )
 );
