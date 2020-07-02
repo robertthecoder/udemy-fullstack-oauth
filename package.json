@@ -1,0 +1,25 @@
+{
+  "name": "Udemy-FullStack-OAuth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertthecoder/udemy-fullstack-oauth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robertthecoder/udemy-fullstack-oauth/issues"
+  },
+  "homepage": "https://github.com/robertthecoder/udemy-fullstack-oauth#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0"
+  }
+}
