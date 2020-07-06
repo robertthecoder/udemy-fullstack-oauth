@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/robertthecoder/udemy-fullstack-oauth#readme",
   "dependencies": {
+    "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.21",
     "passport": "^0.4.1",
