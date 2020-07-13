@@ -38,26 +38,22 @@ passport.use(
       clientSecret: keys.googleClientSecret,
       callbackURL: "/auth/google/callback"
     },
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       //   console.log(accessToken);
       //   console.log(profile);
       //   console.log(refreshToken);
 
-      User.findOne({ googleId: profile.id }).then(existingUser => {
-        if (!existingUser) {
-          // new user
-          new User({ googleId: profile.id })
-            .save(function(err, doc) {
-              if (err) return console.error(err);
-              console.log("Document inserted succussfully!");
-            })
-            .then(user => done(null, user));
-          console.log("New User has been added to db");
-        } else {
-          done(null, existingUser); // we are all finished, here is the user
-          console.log("Did not add to db, as user already exists!");
-        }
-      });
+      const existingUser = await User.findOne({ googleId: profile.id });
+      if (!existingUser) {
+        // new user
+        const user = await new User({ googleId: profile.id });
+        done(null, user);
+
+        console.log("New User has been added to db");
+      } else {
+        done(null, existingUser); // we are all finished, here is the user
+        console.log("Did not add to db, as user already exists!");
+      }
     }
   )
 );
